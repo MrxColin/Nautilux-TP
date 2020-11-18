@@ -4,8 +4,7 @@
 <form action="" method="get" class="form-group" style="width:60%;">
     <div class="form-example">
       <label for="label">Libellé  (doit être unique)</label>      
-      <input ng-if="modif===false" class="form-control" type="text" name="label" id="label" ng-model="intervention.libel" required>
-      <input ng-if="modif===true" class="form-control" type="text" name="label" id="label" ng-model="intervention.libel" disabled>
+      <input class="form-control" type="text" name="label" id="label" ng-model="intervention.libel">
     </div>
     <div class="form-example">
       <label for="desc">Description </label>

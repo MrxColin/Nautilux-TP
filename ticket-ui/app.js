@@ -40,7 +40,7 @@ app.controller('listeTicketsController', ['$scope', '$http', 'ticketService', fu
         $http({
 
             method: 'DELETE',
-            url: 'http://127.0.0.1:5000/api/ressources/deleteTicket/' + ticket.libel   //on supprime l'élément, (pour des raisons pratique, le libellé fait office d'id, on estime qu'il est unique)
+            url: 'http://127.0.0.1:5000/api/ressources/deleteTicket/' + ticket.id   //on supprime l'élément, (pour des raisons pratique, le libellé fait office d'id, on estime qu'il est unique)
 
         }).then(function successCallback(response) {
             alert("Le ticket a été supprimé");
@@ -65,6 +65,7 @@ app.controller('listeTicketsController', ['$scope', '$http', 'ticketService', fu
     $scope.reset = function (ticket) {  //Si l'on quitte la modification via la navbar
         ticketService.modif = false;
         ticketService.intervention = {
+            id: "",
             libel: "",
             desc: "",
             nom_inter: "",
@@ -80,12 +81,15 @@ app.controller('listeTicketsController', ['$scope', '$http', 'ticketService', fu
 
 app.controller('ticketController', ['$scope', '$http', 'ticketService', function ($scope, $http, ticketService) {
     $scope.intervention = ticketService.intervention;
+    $scope.required = true;
+
     $scope.modif = ticketService.modif;
-    $scope.modify = function (ticket) {  // Lorsqu'on valide la modification
+    $scope.modify_ticket = function (ticket) {  // Lorsqu'on valide la modification
         $http.post('http://127.0.0.1:5000/api/ressources/modifyTicket', JSON.stringify(ticket)).then(function successCallback(response) {
             alert("Le ticket a été modifié");
             ticketService.modif = false;
             ticketService.intervention = {
+                id: "",
                 libel: "",
                 desc: "",
                 nom_inter: "",
@@ -104,6 +108,7 @@ app.controller('ticketController', ['$scope', '$http', 'ticketService', function
             alert("Le ticket a été ajouté");
             ticketService.modif = false;
             $scope.intervention = {
+                id: "",
                 libel: "",
                 desc: "",
                 nom_inter: "",
@@ -142,11 +147,11 @@ app.service("ticketService", [function () {
         date_inter: new Date()
     };
     this.modif = false;
-
     this.updateInter = function (ticket) {
         this.intervention = ticket;
         this.modif = true;
     }
+
 }]);
 
 

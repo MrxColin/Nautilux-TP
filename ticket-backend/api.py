@@ -11,12 +11,20 @@ from flask_cors import CORS
 import datetime 
 from datetime import datetime
 from datetime import date
+import random
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
 
 tickets= []
+
+id=0
+def get_id():
+    global id
+    id=id+1
+    return str(id)
+
 
 def setStatut(ticket):
     complet=True
@@ -67,6 +75,7 @@ def api_put():
         json_data = json.load(json_file)
         data=json.loads(request.data)
         data=setStatut(data)
+        data["id"]=get_id()
         json_data.append(data)
     with open("data.json", "w") as write_file:
         json.dump(json_data, write_file)
@@ -81,12 +90,12 @@ def api_post():
     with open("data.json") as json_file:
         json_data = json.load(json_file)
         data=json.loads(request.data)
+        print((data['id']))
         for ticket in json_data:
             print(data)
-            if (data['libel']==ticket['libel']):
+            if (int(data['id'])==ticket['id']):
                 newdata.append(data)
             else:
-                #my_dict.pop('$$hashKey', None)
                 newdata.append(ticket)
      
     with open("data.json", "w") as write_file:
@@ -98,13 +107,14 @@ def api_post():
 
 
 
-@app.route('/api/ressources/deleteTicket/<ticket_label>', methods=['DELETE'])
-def api_delete(ticket_label):
+@app.route('/api/ressources/deleteTicket/<ticket_id>', methods=['DELETE'])
+def api_delete(ticket_id):
     newdata=[]
     with open("data.json") as json_file:
         json_data = json.load(json_file)
+        print(ticket_id)
         for ticket in json_data:
-            if (ticket_label!=ticket['libel']):
+            if (int(ticket_id)!=ticket['id']):
                 newdata.append(ticket)
     with open("data.json", "w") as write_file:
         json.dump(newdata, write_file)
