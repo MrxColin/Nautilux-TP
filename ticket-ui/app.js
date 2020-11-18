@@ -94,8 +94,8 @@ app.controller('ticketController', ['$scope', '$http', 'ticketService', function
                 statut: "",
                 date_inter: new Date()
             };
+
         }, function errorCallback(response) {
-            console.log(response)
             alert("Erreur lors de la modification!");
         });
 

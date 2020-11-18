@@ -26,7 +26,6 @@ def setStatut(ticket):
             complet=False
     date_inter = datetime.strptime(ticket['date_inter'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
     today = date.today()
-    print(today)
     if (date_inter<today):
         date_passe=True
 
@@ -88,9 +87,9 @@ def api_post():
         for ticket in json_data:
             print(data)
             if (data['libel']==ticket['libel']):
-                print("CEST LE MEME")
                 newdata.append(data)
             else:
+                #my_dict.pop('$$hashKey', None)
                 newdata.append(ticket)
      
     with open("data.json", "w") as write_file:
