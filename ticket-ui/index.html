@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="Nautilux">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="app.js"></script>
+    <title>Nautilux</title>
+
+</head>
+
+<body>
+    <div ng-controller="listeTicketsController">
+
+        <img src="img/ticketUI.png">
+        <div class="navig">
+            <a href="#!form" class="btn btn-warning" class="buttons" ng-click="reset()">Ajouter une intervention</a>
+            <a href="#!tickets" class="btn btn-warning" class="buttons" ng-click="reset()">Visualiser les interventions</a>
+        </div>
+        <div ng-view></div>
+    </div>
+
+</body>
+
+</html>

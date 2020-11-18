@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<form action="" method="get" class="form-group" style="width:60%;">
+    <div class="form-example">
+      <label for="label">Libellé </label>      
+      <input ng-if="modif===false" class="form-control" type="text" name="label" id="label" ng-model="intervention.libel" required>
+      <input ng-if="modif===true" class="form-control" type="text" name="label" id="label" ng-model="intervention.libel" required disabled>
+    </div>
+    <div class="form-example">
+      <label for="desc">Description </label>
+      <input class="form-control" type="text" name="desc" id="desc" ng-model="intervention.desc" >
+    </div>
+    <div class="form-example">
+        <label for="date">Date </label>
+        <input class="form-control" type="date" dateformat="d M y" name="date" id="date" ng-model="intervention.date_inter">
+    </div>
+      <div class="form-example">
+        <label for="name">Nom de l'intervenant </label>
+        <input class="form-control" type="text" name="name" id="name" ng-model="intervention.nom_inter">
+    </div>
+    <div class="form-example">
+        <label for="lieu">Lieu</label>
+        <input class="form-control" type="text" name="lieu" id="lieu" ng-model="intervention.lieu">
+    </div>
+    <div class="form-example">
+
+      <a href="#!tickets" ng-if="modif===false"class="btn btn-primary"  ng-click="add(intervention)">Ajouter l'intervention</a>
+      <a href="#!tickets" ng-if="modif===true"class="btn btn-primary"  ng-click="modify(intervention)">Modifier l'intervention</a>
+
+    </div>
+  </form>

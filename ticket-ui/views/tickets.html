@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+     <table class="table" style="width:80%">
+     <thead>
+         <tr>
+             <th scope="col">Libellé</th>
+             <th scope="col">Nom Intervenant</th>
+             <th scope="col">Description</th>
+             <th scope="col">Date de l'intervention</th>
+             <th scope="col">Lieu</th>
+             <th scope="col">Modifier/Supprimer</th>
+         </tr>
+     </thead>
+     <tr ng-repeat="ticket in tickets | orderBy : 'ticket.date_inter'" tickets-Directive
+         ng-if="ticket.statut==='Brouillon'" style="background-color : rgb(201, 198, 198);"></tr>
+     <tr ng-repeat="ticket in tickets | orderBy : 'ticket.date_inter'" tickets-Directive
+         ng-if="ticket.statut==='Validé'" style="background-color : rgb(236, 226, 84);"></tr>
+    <tr ng-repeat="ticket in tickets | orderBy : 'ticket.date_inter'" tickets-Directive
+         ng-if="ticket.statut==='Terminé'" style="background-color : rgb(125, 201, 125);"></tr>
+ </table>
+
