@@ -102,9 +102,23 @@ app.controller('ticketController', ['$scope', '$http', 'ticketService', function
     };
     $scope.add = function (intervention) {
         console.log(intervention);
-        $http.put('http://127.0.0.1:5000/api/ressources/putTickets', JSON.stringify(intervention)).then(function (response) { });
-    };
+        $http.put('http://127.0.0.1:5000/api/ressources/putTickets', JSON.stringify(intervention)).then(function successCallback(response) {
+            alert("Le ticket a été ajouté");
+            ticketService.modif = false;
+            $scope.intervention = {
+                libel: "",
+                desc: "",
+                nom_inter: "",
+                lieu: "",
+                statut: "",
+                date_inter: new Date()
+            };
+        }, function errorCallback(response) {
+            console.log(response)
+            alert("Erreur lors de la modification!");
+        });
 
+    };
 
 }])
 
