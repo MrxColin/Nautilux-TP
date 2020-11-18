@@ -81,7 +81,6 @@ app.controller('listeTicketsController', ['$scope', '$http', 'ticketService', fu
 app.controller('ticketController', ['$scope', '$http', 'ticketService', function ($scope, $http, ticketService) {
     $scope.intervention = ticketService.intervention;
     $scope.modif = ticketService.modif;
-    console.log($scope.intervention);
     $scope.modify = function (ticket) {  // Lorsqu'on valide la modification
         $http.post('http://127.0.0.1:5000/api/ressources/modifyTicket', JSON.stringify(ticket)).then(function successCallback(response) {
             alert("Le ticket a été modifié");
@@ -101,7 +100,6 @@ app.controller('ticketController', ['$scope', '$http', 'ticketService', function
 
     };
     $scope.add = function (intervention) {
-        console.log(intervention);
         $http.put('http://127.0.0.1:5000/api/ressources/putTickets', JSON.stringify(intervention)).then(function successCallback(response) {
             alert("Le ticket a été ajouté");
             ticketService.modif = false;
@@ -114,7 +112,6 @@ app.controller('ticketController', ['$scope', '$http', 'ticketService', function
                 date_inter: new Date()
             };
         }, function errorCallback(response) {
-            console.log(response)
             alert("Erreur lors de la modification!");
         });
 

@@ -10,11 +10,11 @@ from flask import request, jsonify,make_response
 from flask_cors import CORS
 import datetime 
 from datetime import datetime
+from datetime import date
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
-from datetime import date
 
 tickets= []
 
@@ -63,8 +63,6 @@ def api_tickets():
     
 @app.route('/api/ressources/putTickets', methods=['PUT'])
 def api_put():
-    print(request.data)
-    print("fsdffs")
     with open("data.json") as json_file:
         json_data = json.load(json_file)
         data=json.loads(request.data)
@@ -79,7 +77,6 @@ def api_put():
 
 @app.route('/api/ressources/modifyTicket', methods=['POST'])
 def api_post():
-    print(request.data)
     newdata=[]
     with open("data.json") as json_file:
         json_data = json.load(json_file)
@@ -103,7 +100,6 @@ def api_post():
 
 @app.route('/api/ressources/deleteTicket/<ticket_label>', methods=['DELETE'])
 def api_delete(ticket_label):
-    print(ticket_label)
     newdata=[]
     with open("data.json") as json_file:
         json_data = json.load(json_file)
