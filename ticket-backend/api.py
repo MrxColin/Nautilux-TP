@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Éditeur de Spyder
 
-Ceci est un script temporaire.
-"""
 import json
 import flask
 from flask import request, jsonify,make_response
@@ -17,12 +13,23 @@ app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 CORS(app)
 
+
 tickets= []
 
-id=0
+def getLastId():
+    maxi=0
+    with open("data.json") as json_file:
+        json_data = json.load(json_file)
+        for t in json_data:
+            if (int(t['id'])>maxi):
+                maxi=int(t['id'])
+    return maxi
+
+id = getLastId()
+
 def get_id():
     global id
-    id=id+1
+    id+=1
     return str(id)
 
 
@@ -90,10 +97,8 @@ def api_post():
     with open("data.json") as json_file:
         json_data = json.load(json_file)
         data=json.loads(request.data)
-        print((data['id']))
         for ticket in json_data:
-            print(data)
-            if (int(data['id'])==ticket['id']):
+            if (int(data['id'])==int(ticket['id'])):
                 newdata.append(data)
             else:
                 newdata.append(ticket)
@@ -112,9 +117,8 @@ def api_delete(ticket_id):
     newdata=[]
     with open("data.json") as json_file:
         json_data = json.load(json_file)
-        print(ticket_id)
         for ticket in json_data:
-            if (int(ticket_id)!=ticket['id']):
+            if (int(ticket_id)!=int(ticket['id'])):
                 newdata.append(ticket)
     with open("data.json", "w") as write_file:
         json.dump(newdata, write_file)
