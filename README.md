@@ -17,7 +17,7 @@ Pour lancer le frontend : http-server -o
 ## Documentation
 
 La vue principale comporte la liste des interventions sous forme de tableau
-Une intervention est désigné par Un libellé (qui pour des raisons pratique sert d'identifiant, il doit donc être unique), le nom de l'intervenant, la description, la date de l'intervention et le lieu.
+Une intervention est désigné par Un libellé, le nom de l'intervenant, la description, la date de l'intervention et le lieu. Il possède également un id unique.
 Le statut de l'intervention fonctionne avec un code couleur : Gris = Brouillon, Jaune = Validé et Vert=Terminé
 On peut éditer et supprimer une intervention via les deux boutons au bout de chaque ligne sur le tableau.
 
